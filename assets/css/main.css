@@ -11,10 +11,19 @@
 # Learn more about CSS variables at https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties
 --------------------------------------------------------------*/
 /* Fonts */
+@font-face {
+  font-family: 'Trajanus Roman';
+  src: url('TrajanusRoman.woff2') format('woff2'),
+    url('TrajanusRoman.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-primary: "Roboto", sans-serif;
-  --font-secondary: "Work Sans", sans-serif;
+  --font-secondary: "Trajanus Roman", "Work Sans", sans-serif;
 }
 
 /* Colors */
@@ -36,6 +45,7 @@ body {
   font-family: var(--font-default);
   color: var(--color-default);
   overflow-x: hidden;
+  padding-bottom: 40px;
 }
 
 a {
@@ -55,6 +65,10 @@ h4,
 h5,
 h6 {
   font-family: var(--font-primary);
+}
+
+p {
+  text-align: justify;
 }
 
 /*--------------------------------------------------------------
@@ -118,6 +132,7 @@ section {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-image: url(https://res.cloudinary.com/dw3bvfufs/image/upload/bg.jpg);
 }
 
 .breadcrumbs:before {
@@ -128,10 +143,11 @@ section {
 }
 
 .breadcrumbs h2 {
-  font-size: 56px;
-  font-weight: 500;
+  font-size: 60px;
+  font-weight: 550;
   color: #fff;
   font-family: var(--font-secondary);
+  letter-spacing: 2px;
 }
 
 .breadcrumbs ol {
@@ -239,6 +255,11 @@ section {
 @media screen and (max-width: 768px) {
   [data-aos-delay] {
     transition-delay: 0 !important;
+  }
+
+  .map {
+    width: 400px;
+    height: 300px;
   }
 }
 
@@ -712,6 +733,13 @@ section {
 /*--------------------------------------------------------------
 # Services Section
 --------------------------------------------------------------*/
+.services .container {
+  margin: 0 20%;
+  /* width: 100% !important; */
+  width: auto;
+  max-width: 100%;
+}
+
 .services .service-item {
   /* padding: 40px; */
   background: #fff;
@@ -728,8 +756,10 @@ section {
 .services .service-item img {
   transition: 0.3s;
   /* position: absolute; */
-  width: 100%;
+  max-width: 100%;
+  min-height: 280px;
   max-height: 400px;
+  object-fit: cover;
 }
 
 .services .service-item:hover {
@@ -782,9 +812,11 @@ section {
   position: absolute;
   z-index: 1;
 }
+
 .gallery .gallery-item:hover {
   cursor: pointer;
 }
+
 .gallery .gallery-item:hover img {
   transform: scale(1.1);
 }
@@ -1240,11 +1272,27 @@ section {
 
 .about .our-story {
   padding: 40px;
-  background-color: #f5f6f7;
+  /* background-color: #f5f6f7; */
   margin-right: 10px;
   width: 40%;
 }
 
+.about .our-story h3:before,
+.about .our-story h3:after {
+  content: "";
+  width: 50px;
+  height: 2px;
+  background: var(--color-primary);
+  display: inline-block;
+}
+
+.about .our-story h3:before {
+  margin: 0 15px 10px 0;
+}
+
+.about .our-story h3:after {
+  margin: 0 0 10px 15px;
+}
 
 .about .our-story h4 {
   text-transform: uppercase;
@@ -1253,10 +1301,11 @@ section {
 }
 
 .about .our-story h3 {
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 700;
-  margin-bottom: 20px;
-  color: var(--color-secondary);
+  position: relative;
+  color: #2e3135;
+  text-align: center;
 }
 
 .about .our-story p:last-child {
@@ -1351,10 +1400,17 @@ section {
 }
 
 .team .member .member-img {
-  margin: 0 80px;
+  /* margin: 0 80px; */
   border-radius: 50%;
+  width: 80%;
+  margin: 0 auto;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   position: relative;
+  align-content: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 1024px) {
@@ -1366,6 +1422,8 @@ section {
 .team .member .member-img img {
   position: relative;
   z-index: 1;
+  min-width: 100%;
+  min-height: 100%;
 }
 
 .team .member .member-img .social {
@@ -1452,8 +1510,14 @@ section {
 /*--------------------------------------------------------------
 # Projet Details Section
 --------------------------------------------------------------*/
+.project-details .portfolio-details-slider {
+  overflow: hidden;
+  height: 60vh;
+}
+
 .project-details .portfolio-details-slider img {
   width: 100%;
+  min-height: 100%;
 }
 
 .project-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet {
@@ -1559,6 +1623,8 @@ section {
 
 .project-details .portfolio-description p {
   padding: 0;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .project-details .portfolio-description .testimonial-item {
@@ -1895,27 +1961,37 @@ section {
   padding: 0;
 }
 
-.hero .subtitle {
-  margin-bottom: 4px;
-  font-style: italic;
+.hero .info p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 18px;
 }
+
+.hero .subtitle {
+  font-family: 'Trajanus Roman';
+  font-size: 20px !important;
+  font-weight: 60;
+  margin-bottom: 4px;
+  font-style: bold;
+  text-align: center
+}
+
 .hero .subtitle::after {
   content: "";
   /* position: absolute; */
   display: block;
-  width: 200px;
+  width: 350px;
   height: 2px;
   background: #feba00b9;
   left: 0;
   right: 0;
   bottom: 0;
-  margin: 4px auto 12px;
+  margin: 10px auto 16px;
 }
 
 .hero .carousel {
   width: 100%;
   min-height: calc(100vh - 88px);
-  padding: 80px 0;
+  padding: 80px 0 88px;
   margin: 0;
   position: relative;
 }
@@ -1923,19 +1999,21 @@ section {
 .hero .carousel-item {
   position: absolute;
   inset: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   overflow: hidden;
-  z-index: 1;
+  z-index: 0;
   transition-duration: 0.4s;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.hero .carousel-item::before {
+.hero .carousel::before {
   content: "";
   background-color: rgba(0, 0, 0, 0.573);
   position: absolute;
   inset: 0;
+  z-index: 1;
+  /* width: 100%; */
 }
 
 .hero .info {
@@ -1963,11 +2041,6 @@ section {
   .hero .info h2 {
     font-size: 36px;
   }
-}
-
-.hero .info p {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 18px;
 }
 
 .hero .info .btn-get-started {
@@ -2612,6 +2685,10 @@ section {
   background-color: var(--color-primary);
 }
 
+.w-fit-content {
+  width: fit-content;
+}
+
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
@@ -2621,12 +2698,15 @@ section {
   background-size: cover;
   font-size: 14px;
   padding: 10px 0;
-  position: relative;
+  position: fixed;
+  bottom: 0;
+  z-index: 4;
+  width: 100%;
 }
 
 .footer:before {
   content: "";
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0);
   position: absolute;
   inset: 0;
 }

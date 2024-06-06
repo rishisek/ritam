@@ -8,6 +8,9 @@
 document.addEventListener('DOMContentLoaded', () => {
   "use strict";
 
+  var video = document.getElementById("drone");
+  video.volume = 0.2;
+
   /**
    * Preloader
    */
